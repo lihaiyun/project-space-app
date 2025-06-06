@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <title>Project Space</title>
-        <link rel="icon" href="/appicon.png" type="image/png" />
+        <link rel="icon" href="/favicon.ico" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
