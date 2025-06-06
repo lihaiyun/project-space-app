@@ -15,6 +15,9 @@ Backend web api repo: [https://github.com/lihaiyun/project-space-api](https://gi
 npm i
 ```
 
+## Setup
+Copy .env.example to .env and update the environment variables as needed.
+
 ## Run
 
 ```bash
