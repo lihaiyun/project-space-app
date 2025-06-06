@@ -1,0 +1,3 @@
+- Run npx shadcn@latest init
+- Add components with npx shadcn@latest add <component>
+- Import and use them in your app
