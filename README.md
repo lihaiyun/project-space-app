@@ -26,4 +26,5 @@ npm run dev
 
 ## Deployment
 This web app can be deployed to [Vercel](https://vercel.com/).
+
 To deploy, push your repository to GitHub and import it into Vercel.
