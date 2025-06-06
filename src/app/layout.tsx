@@ -26,11 +26,21 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <UserProvider>
           <MainMenu />
-          <main className="container mx-auto py-4">{children}</main>
+          <main className="container mx-auto py-4 flex-1">{children}</main>
+          <footer className="text-center text-gray-500 text-sm py-4">
+            © {new Date().getFullYear()} developed by Li Haiyun &lt;
+            <a
+              href="mailto:li_haiyun@nyp.edu.sg"
+              className="underline hover:text-gray-700"
+            >
+              li_haiyun@nyp.edu.sg
+            </a>
+            &gt;
+          </footer>
         </UserProvider>
       </body>
     </html>
