@@ -2,8 +2,10 @@
 
 Frontend web app that calls a backend web API for CRUD operations on projects with authentication.
 
-React framework: <a href="https://nextjs.org" target="_blank" rel="noopener">Next.js</a>  
-UI Library: <a href="https://ui.shadcn.com/" target="_blank" rel="noopener">shadcn/ui</a>
+Live demo: [https://project-space-app.vercel.app](https://project-space-app.vercel.app)
+
+React framework: [Next.js](https://nextjs.org)  
+UI Library: [shadcn/ui](https://ui.shadcn.com/)
 
 ## Installation
 
