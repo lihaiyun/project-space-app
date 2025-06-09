@@ -4,8 +4,11 @@ Frontend Web App that calls a backend Web API for CRUD operations on projects wi
 
 Live demo: [https://project-space-app.vercel.app](https://project-space-app.vercel.app)
 
-React framework: [Next.js](https://nextjs.org)  
-UI Library: [shadcn/ui](https://ui.shadcn.com/)
+## Technologies
+
+- **React Framework:** [Next.js](https://nextjs.org)
+- **Language:** TypeScript
+- **UI Library:** [shadcn/ui](https://ui.shadcn.com/)
 
 Backend Web API repo: [https://github.com/lihaiyun/project-space-api](https://github.com/lihaiyun/project-space-api)
 
