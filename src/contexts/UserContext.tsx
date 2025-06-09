@@ -19,10 +19,13 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<UserType | null>(null);
 
   useEffect(() => {
-    console.log("User Provider mounted...");
     http.get("/users/auth")
-      .then(res => setUser(res.data.user))
-      .catch(() => setUser(null));
+      .then(res => {
+        setUser(res.data.user)
+      })
+      .catch(() => {
+        setUser(null);
+      });
   }, []);
 
   return (
