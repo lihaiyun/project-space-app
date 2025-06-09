@@ -29,9 +29,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <UserProvider>
-          <MainMenu />
-          <main className="container mx-auto py-4 flex-1">{children}</main>
-          <footer className="text-center text-gray-500 text-sm py-4">
+          <main className="container mx-auto px-2 flex-1">
+            <MainMenu />
+            {children}
+          </main>
+          <footer className="text-center text-gray-500 text-sm my-4">
             © {new Date().getFullYear()} developed by Li Haiyun &lt;
             <a
               href="mailto:li_haiyun@nyp.edu.sg"

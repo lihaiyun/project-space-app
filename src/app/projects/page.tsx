@@ -8,7 +8,7 @@ import { User, CheckCircle, XCircle, Clock, Calendar, Plus, Pencil } from "lucid
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "@/contexts/UserContext";
-import { Spinner }from "@/components/ui/spinner";
+import { Spinner } from "@/components/ui/spinner";
 import { useRouter } from "next/navigation";
 
 // Use date-fns for formatting
@@ -89,6 +89,18 @@ export default function Projects() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
           {projects.map((project: any) => (
             <Card key={project._id} className="p-2 gap-2">
+              {project.imageUrl && (
+                <div className="relative w-full aspect-[16/9]">
+                  <Image
+                    src={project.imageUrl}
+                    alt={project.name}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="rounded object-cover"
+                    priority
+                  />
+                </div>
+              )}
               <CardHeader className="p-2 pb-0">
                 <div className="flex items-center justify-between">
                   <CardTitle className="text-xl">{project.name}</CardTitle>
@@ -115,23 +127,9 @@ export default function Projects() {
                     {renderStatus(project.status)}
                   </span>
                 </div>
-                <p
-                  className="text-gray-700 mb-2 whitespace-pre-line line-clamp-2"
-                >
+                <p className="text-gray-700 mb-2 whitespace-pre-line line-clamp-2">
                   {project.description}
                 </p>
-                {project.imageUrl && (
-                  <div className="relative w-full aspect-[16/9]">
-                    <Image
-                      src={project.imageUrl}
-                      alt={project.name}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                      className="rounded object-cover"
-                      priority
-                    />
-                  </div>
-                )}
               </CardContent>
             </Card>
           ))}
