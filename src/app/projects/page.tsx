@@ -8,6 +8,7 @@ import { User, CheckCircle, XCircle, Clock, Calendar, Plus, Pencil } from "lucid
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "@/contexts/UserContext";
+import { Spinner }from "@/components/ui/spinner";
 
 // Use date-fns for formatting
 function formatDate(dateString: string) {
@@ -72,7 +73,9 @@ export default function Projects() {
         </Button>
       </div>
       {loading ? (
-        <div>Loading...</div>
+        <div className="flex justify-center items-center py-10">
+          <Spinner className="w-8 h-8 text-blue-500" />
+        </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
           {projects.map((project: any) => (
