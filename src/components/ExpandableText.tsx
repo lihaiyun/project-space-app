@@ -2,12 +2,10 @@ import { useRef, useState, useEffect } from "react";
 
 interface ExpandableTextProps {
   text: string;
-  maxLines?: number;
 }
 
 const ExpandableText: React.FC<ExpandableTextProps> = ({
-  text,
-  maxLines = 2,
+  text
 }) => {
   const textRef = useRef<HTMLParagraphElement>(null);
   const [expanded, setExpanded] = useState(false);
@@ -25,7 +23,7 @@ const ExpandableText: React.FC<ExpandableTextProps> = ({
       <p
         ref={textRef}
         className={`text-gray-700 mb-2 whitespace-pre-line transition-all duration-200 ease-in-out ${
-          expanded ? "" : `line-clamp-${maxLines}`
+          expanded ? "" : `line-clamp-2`
         }`}
       >
         {text}
