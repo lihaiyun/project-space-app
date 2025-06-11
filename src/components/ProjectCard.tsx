@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 import { useContext } from "react";
 import UserContext from "@/contexts/UserContext";
+import ExpandableText from "./ExpandableText";
 
 function formatDate(dateString: string) {
   return format(parseISO(dateString), "d MMM yyyy");
@@ -88,9 +89,7 @@ export default function ProjectCard({ project }: { project: any }) {
             {renderStatus(project.status)}
           </span>
         </div>
-        <p className="text-gray-700 mb-2 whitespace-pre-line line-clamp-2">
-          {project.description}
-        </p>
+        <ExpandableText text={project.description}/>
       </CardContent>
     </Card>
   );
