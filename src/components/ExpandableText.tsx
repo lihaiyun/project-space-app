@@ -1,11 +1,14 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from "react";
 
 interface ExpandableTextProps {
   text: string;
   maxLines?: number;
 }
 
-const ExpandableText: React.FC<ExpandableTextProps> = ({ text, maxLines = 2 }) => {
+const ExpandableText: React.FC<ExpandableTextProps> = ({
+  text,
+  maxLines = 2,
+}) => {
   const textRef = useRef<HTMLParagraphElement>(null);
   const [expanded, setExpanded] = useState(false);
   const [isOverflowing, setIsOverflowing] = useState(false);
@@ -22,7 +25,7 @@ const ExpandableText: React.FC<ExpandableTextProps> = ({ text, maxLines = 2 }) =
       <p
         ref={textRef}
         className={`text-gray-700 mb-2 whitespace-pre-line transition-all duration-200 ease-in-out ${
-          expanded ? '' : `line-clamp-${maxLines}`
+          expanded ? "" : `line-clamp-${maxLines}`
         }`}
       >
         {text}
@@ -32,7 +35,7 @@ const ExpandableText: React.FC<ExpandableTextProps> = ({ text, maxLines = 2 }) =
           onClick={() => setExpanded(!expanded)}
           className="text-sm text-blue-500 hover:underline focus:outline-none"
         >
-          {expanded ? 'Show less' : 'Show more'}
+          {expanded ? "Show less" : "Show more"}
         </button>
       )}
     </div>
