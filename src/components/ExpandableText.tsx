@@ -33,7 +33,7 @@ const ExpandableText: React.FC<ExpandableTextProps> = ({
       {isOverflowing && (
         <button
           onClick={() => setExpanded(!expanded)}
-          className="text-sm text-blue-500 hover:underline focus:outline-none"
+          className="text-sm text-gray-500 hover:text-blue-600 cursor-pointer"
         >
           {expanded ? "Show less" : "Show more"}
         </button>
