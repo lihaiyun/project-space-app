@@ -32,7 +32,7 @@ export default function Projects() {
   function handleAddProjectClick(e: React.MouseEvent) {
     if (!user) {
       e.preventDefault();
-      router.push("/user/login");
+      router.push("/auth/login");
     }
   }
 

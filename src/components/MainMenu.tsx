@@ -23,7 +23,7 @@ export default function MainMenu() {
       console.error("Logout failed:", e);
     }
     setUser(null);
-    router.push("/user/login");
+    router.push("/auth/login");
   };
 
   return (
@@ -75,12 +75,12 @@ export default function MainMenu() {
               <>
                 <NavigationMenuItem>
                   <NavigationMenuLink className="text-lg" asChild>
-                    <Link href="/user/login">Login</Link>
+                    <Link href="/auth/login">Login</Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                   <NavigationMenuLink className="text-lg" asChild>
-                    <Link href="/user/register">Register</Link>
+                    <Link href="/auth/register">Register</Link>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
               </>

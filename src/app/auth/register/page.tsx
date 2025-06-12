@@ -45,7 +45,7 @@ export default function Register() {
                 // Handle successful registration
                 console.log("Registration successful:", res.data);
                 toast.success("Registration successful!");
-                router.push("/user/login");
+                router.push("/auth/login");
             })
             .catch((err) => {
                 // Handle error, e.g., show a notification or alert
