@@ -223,7 +223,10 @@ export default function EditProject() {
                   >
                     <CalendarIcon className="mr-2 h-4 w-4" />
                     {formik.values.dueDate
-                      ? format(parseLocalDate(formik.values.dueDate), "d MMM yyyy")
+                      ? format(
+                          parseLocalDate(formik.values.dueDate),
+                          "d MMM yyyy"
+                        )
                       : "Pick a date"}
                   </Button>
                 </PopoverTrigger>
@@ -348,8 +351,8 @@ export default function EditProject() {
                 <DialogTitle>Confirm Delete</DialogTitle>
               </DialogHeader>
               <div className="mb-6">
-                Are you sure you want to delete this project? This action cannot be
-                undone.
+                Are you sure you want to delete this project? This action cannot
+                be undone.
               </div>
               <DialogFooter>
                 <button
