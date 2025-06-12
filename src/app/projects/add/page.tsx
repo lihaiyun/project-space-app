@@ -317,7 +317,7 @@ export default function AddProject() {
           </button>
           <button
             type="button"
-            className="w-full bg-gray-300 text-gray-800 py-2 rounded hover:bg-gray-400 transition-colors"
+            className="w-full border border-blue-600 text-blue-600 py-2 rounded hover:bg-blue-50 transition-colors bg-white"
             onClick={() => router.push("/projects")}
           >
             Cancel
