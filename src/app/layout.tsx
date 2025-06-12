@@ -37,7 +37,7 @@ export default function RootLayout({
             {children}
           </main>
           <footer className="text-center text-gray-500 text-sm my-4">
-            © {new Date().getFullYear()} developed by Li Haiyun &lt;
+            © {new Date().getFullYear()} by Li Haiyun &lt;
             <a
               href="mailto:li_haiyun@nyp.edu.sg"
               className="underline hover:text-gray-700"
