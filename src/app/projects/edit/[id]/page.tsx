@@ -62,7 +62,7 @@ export default function EditProject() {
       dueDate: "",
       status: "not-started",
       imageId: "",
-      imageUrl: "",
+      imageUrl: ""
     },
     validationSchema: projectSchema,
     enableReinitialize: true,
@@ -101,7 +101,6 @@ export default function EditProject() {
       }
     }
     fetchProject();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.id]);
 
   // Handle image upload
@@ -150,7 +149,7 @@ export default function EditProject() {
   return (
     <div className="flex flex-col items-center justify-center p-4">
       <h1 className="text-2xl font-bold mb-8">Edit Project</h1>
-      <form className="w-full max-w-2xl" onSubmit={formik.handleSubmit}>
+      <form className="w-full max-w-4xl" onSubmit={formik.handleSubmit}>
         {/* Row: Form fields (left) and image (right) */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Left: Form fields */}
