@@ -12,6 +12,10 @@ Live demo: [https://project-space-app.vercel.app](https://project-space-app.verc
 
 Backend Web API repo: [https://github.com/lihaiyun/project-space-api](https://github.com/lihaiyun/project-space-api)
 
+## Images
+
+You can get free images from [Pexels](https://www.pexels.com).
+
 ## Installation
 
 ```bash
