@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import http from "@/utils/http";
 
 type UserType = {
-  _id: string;
+  id: string;
   name: string;
   email: string;
 };

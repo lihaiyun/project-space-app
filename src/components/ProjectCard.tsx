@@ -50,7 +50,7 @@ export default function ProjectCard({ project }: { project: any }) {
   const { user } = useContext(UserContext);
 
   return (
-    <Card key={project._id} className="p-2 gap-2">
+    <Card key={project.id} className="p-2 gap-2">
       {project.imageUrl && (
         <div className="relative w-full aspect-[16/9]">
           <Image
@@ -66,8 +66,8 @@ export default function ProjectCard({ project }: { project: any }) {
       <CardHeader className="p-2 pb-0">
         <div className="flex items-center justify-between">
           <CardTitle className="text-xl">{project.name}</CardTitle>
-          {user && project.owner._id === user._id && (
-            <Link href={`/projects/edit/${project._id}`}>
+          {user && project.owner.id === user.id && (
+            <Link href={`/projects/edit/${project.id}`}>
               <Pencil className="w-5 h-5 text-gray-500 hover:text-blue-600" />
             </Link>
           )}
