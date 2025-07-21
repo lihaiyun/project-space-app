@@ -19,7 +19,7 @@ export default function Projects() {
     async function fetchProjects() {
       try {
         const response = await http.get("/projects");
-        setProjects(response.data);
+        setProjects(response.data.projects);
       } catch (error) {
         console.error("Error fetching projects:", error);
       } finally {
