@@ -40,7 +40,9 @@ export default function Register() {
             data.name = data.name.trim();
             data.email = data.email.trim().toLowerCase();
             data.password = data.password.trim();
-            http.post("/users/register", data)
+            // remove confirmPassword from data before sending to API
+            const { confirmPassword, ...submitData } = data;
+            http.post("/users/register", submitData)
             .then((res) => {
                 // Handle successful registration
                 console.log("Registration successful:", res.data);
