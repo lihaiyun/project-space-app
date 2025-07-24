@@ -1,7 +1,7 @@
 "use client";
 import http from "@/utils/http";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { Plus, Search, X } from "lucide-react";
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "@/contexts/UserContext";
@@ -13,12 +13,17 @@ export default function Projects() {
   const { user } = useContext(UserContext);
   const [projects, setProjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();
 
   useEffect(() => {
     async function fetchProjects() {
+      console.log("Fetching projects with search term:", searchTerm);
+      setLoading(true);
       try {
-        const response = await http.get("/projects");
+        const params = searchTerm ? { search: searchTerm } : {};
+        const response = await http.get("/projects", { params });
         setProjects(response.data.projects);
       } catch (error) {
         console.error("Error fetching projects:", error);
@@ -27,13 +32,23 @@ export default function Projects() {
       }
     }
     fetchProjects();
-  }, []);
+  }, [searchTerm]);
 
   function handleAddProjectClick(e: React.MouseEvent) {
     if (!user) {
       e.preventDefault();
       router.push("/auth/login");
     }
+  }
+
+  function handleSearch(e: React.FormEvent) {
+    e.preventDefault();
+    setSearchTerm(searchQuery);
+  }
+
+  function handleClearSearch() {
+    setSearchQuery("");
+    setSearchTerm("");
   }
 
   return (
@@ -47,6 +62,28 @@ export default function Projects() {
           </Link>
         </Button>
       </div>
+      
+      {/* Search Form */}
+      <form onSubmit={handleSearch} className="mb-6">
+        <div className="flex gap-2">
+          <input
+            type="text"
+            placeholder="Search projects..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="flex-1 px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <Button type="submit" variant="ghost">
+            <Search className="w-5 h-5 text-blue-600" />
+          </Button>
+          {(searchQuery || searchTerm) && (
+            <Button type="button" variant="outline" onClick={handleClearSearch}>
+              <X className="w-5 h-5" />
+            </Button>
+          )}
+        </div>
+      </form>
+
       {loading ? (
         <div className="flex justify-center items-center py-10">
           <Spinner className="w-8 h-8 text-blue-500" />

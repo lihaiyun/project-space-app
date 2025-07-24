@@ -68,7 +68,7 @@ export default function ProjectCard({ project }: { project: any }) {
           <CardTitle className="text-xl">{project.name}</CardTitle>
           {user && project.owner.id === user.id && (
             <Link href={`/projects/edit/${project.id}`}>
-              <Pencil className="w-5 h-5 text-gray-500 hover:text-blue-600" />
+              <Pencil className="w-5 h-5 text-blue-600" />
             </Link>
           )}
         </div>
