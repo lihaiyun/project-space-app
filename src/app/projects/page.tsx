@@ -64,7 +64,7 @@ export default function Projects() {
       </div>
       
       {/* Search Form */}
-      <form onSubmit={handleSearch} className="mb-6">
+      <form onSubmit={handleSearch} className="mx-1 mb-3 max-w-md">
         <div className="flex gap-2">
           <input
             type="text"
