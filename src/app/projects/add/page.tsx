@@ -56,6 +56,7 @@ export default function AddProject() {
   const [datePickerOpen, setDatePickerOpen] = useState(false);
   const [statusPopoverOpen, setStatusPopoverOpen] = useState(false);
   const [uploadProgress, setUploadProgress] = useState<boolean>(false);
+  const [isDragOver, setIsDragOver] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -84,6 +85,10 @@ export default function AddProject() {
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+    await uploadImage(file);
+  };
+
+  const uploadImage = async (file: File) => {
     const formData = new FormData();
     formData.append("file", file);
 
@@ -98,6 +103,32 @@ export default function AddProject() {
     } catch (err) {
       setError("Image upload failed");
       setUploadProgress(false);
+    }
+  };
+
+  // Handle drag and drop
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(true);
+  };
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+    
+    const files = e.dataTransfer.files;
+    if (files.length > 0) {
+      const file = files[0];
+      if (file.type.startsWith('image/')) {
+        uploadImage(file);
+      } else {
+        setError("Please upload an image file");
+      }
     }
   };
 
@@ -273,11 +304,23 @@ export default function AddProject() {
               <label className="block text-sm font-medium mb-2" htmlFor="image">
                 Project Image
               </label>
-              <label
-                htmlFor="image"
-                className="inline-block bg-black text-white px-3 py-1 rounded cursor-pointer hover:bg-gray-800 transition-colors"
+              <button
+                type="button"
+                className="bg-black text-white px-3 py-1 rounded hover:bg-gray-800 transition-colors"
+                onClick={() => document.getElementById('image')?.click()}
               >
                 Choose File
+              </button>
+              <div
+                className={`border-2 border-dashed rounded-lg mt-2 p-6 text-center cursor-pointer transition-colors ${
+                  isDragOver
+                    ? "border-blue-500 bg-blue-50"
+                    : "border-gray-300 hover:border-blue-400"
+                }`}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+              >
                 <input
                   type="file"
                   id="image"
@@ -285,7 +328,17 @@ export default function AddProject() {
                   onChange={handleImageChange}
                   className="hidden"
                 />
-              </label>
+                <div className="space-y-2">
+                  <div className="text-gray-500">
+                    {isDragOver ? (
+                      <p className="text-blue-600">Drop image here</p>
+                    ) : (
+                      <p>Drag and drop an image here</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+              
               {uploadProgress && (
                 <div className="flex items-center justify-center mt-2">
                   <Spinner className="text-blue-500" />
