@@ -20,7 +20,7 @@ const loginSchema = Yup.object().shape({
 });
 
 export default function Login() {
-  const { setUser } = useContext(UserContext);
+  const { login } = useContext(UserContext);
   const router = useRouter();
 
   const formik = useFormik({
@@ -29,23 +29,21 @@ export default function Login() {
       password: "",
     },
     validationSchema: loginSchema,
-    onSubmit: (data) => {
-      data.email = data.email.trim().toLowerCase();
-      data.password = data.password.trim();
-      http
-        .post("/users/login", data)
-        .then((res) => {
-          // Handle successful login
-          setUser(res.data.user);
-          toast.success("Login successful!");
-          router.push("/"); // Redirect to home page after login
-        })
-        .catch(function (err) {
-          // Handle error, e.g., show a notification or alert
-          toast.error(
-            err.response?.data?.message || "Login failed. Please try again."
-          );
-        });
+    onSubmit: async (data, { setSubmitting }) => {
+      try {
+        const email = data.email.trim().toLowerCase();
+        const password = data.password.trim();
+        
+        await login(email, password);
+        toast.success("Login successful!");
+        router.push("/"); // Redirect to home page after login
+      } catch (err: any) {
+        toast.error(
+          err.response?.data?.message || "Login failed. Please try again."
+        );
+      } finally {
+        setSubmitting(false);
+      }
     },
   });
 

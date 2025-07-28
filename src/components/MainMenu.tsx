@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import UserContext from "@/contexts/UserContext";
-import http from "@/utils/http";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -11,19 +10,17 @@ import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 
 export default function MainMenu() {
-  const { user, setUser } = useContext(UserContext);
+  const { user, logout } = useContext(UserContext);
   const router = useRouter();
   const pathname = usePathname();
 
   const handleLogout = async () => {
     try {
-      await http.post("/users/logout");
+      await logout();
+      router.push("/auth/login");
     } catch (e) {
-      // Optionally handle error
       console.error("Logout failed:", e);
     }
-    setUser(null);
-    router.push("/auth/login");
   };
 
   return (
