@@ -9,14 +9,14 @@ type UserType = {
 
 const UserContext = React.createContext<{
   user: UserType | null;
-  setUser: (user: UserType | null) => void;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
+  isAuthenticated: boolean;
 }>({
   user: null,
-  setUser: () => {},
   login: async () => {},
   logout: async () => {},
+  isAuthenticated: false,
 });
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
@@ -39,7 +39,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <UserContext.Provider value={{ user, setUser, login, logout }}>
+    <UserContext.Provider value={{ user, login, logout, isAuthenticated: !!user }}>
       {children}
     </UserContext.Provider>
   );

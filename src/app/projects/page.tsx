@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import ProjectCard from "@/components/ProjectCard";
 
 export default function Projects() {
-  const { user } = useContext(UserContext);
+  const { isAuthenticated } = useContext(UserContext);
   const [projects, setProjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -35,7 +35,7 @@ export default function Projects() {
   }, [searchTerm]);
 
   function handleAddProjectClick(e: React.MouseEvent) {
-    if (!user) {
+    if (!isAuthenticated) {
       e.preventDefault();
       router.push("/auth/login");
     }

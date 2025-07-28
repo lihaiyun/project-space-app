@@ -47,7 +47,7 @@ function renderStatus(status: string) {
 }
 
 export default function ProjectCard({ project }: { project: any }) {
-  const { user } = useContext(UserContext);
+  const { isAuthenticated, user } = useContext(UserContext);
 
   return (
     <Card key={project.id} className="p-2 gap-2">
@@ -66,7 +66,7 @@ export default function ProjectCard({ project }: { project: any }) {
       <CardHeader className="p-2 pb-0">
         <div className="flex items-center justify-between">
           <CardTitle className="text-xl">{project.name}</CardTitle>
-          {user && project.owner.id === user.id && (
+          {isAuthenticated && project.owner.id === user?.id && (
             <Link href={`/projects/edit/${project.id}`}>
               <Pencil className="w-5 h-5 text-blue-600" />
             </Link>

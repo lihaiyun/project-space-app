@@ -10,7 +10,7 @@ import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 
 export default function MainMenu() {
-  const { user, logout } = useContext(UserContext);
+  const { isAuthenticated, user, logout } = useContext(UserContext);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -56,9 +56,9 @@ export default function MainMenu() {
       <NavigationMenu className="ml-auto">
         <NavigationMenuList className="flex">
           <div className="flex gap-2">
-            {user ? (
+            {isAuthenticated ? (
               <>
-                <span className="text-lg font-bold px-2 pt-1">{user.name}</span>
+                <span className="text-lg font-bold px-2 pt-1">{user?.name}</span>
                 <NavigationMenuItem>
                   <button
                     className="text-lg px-2 py-1 rounded hover:bg-gray-100"
